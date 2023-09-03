@@ -3,84 +3,83 @@ package com.example.ava1;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
-
-
 import android.os.Bundle;
-
 import android.text.InputFilter;
-
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-
 import android.widget.EditText;
+import android.widget.Toast;
 
-import android.widget.TextView;
+import com.example.ava1.modelo.Disciplina;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
+    private EditText nomeDisciplina;
     private EditText notaA1;
     private EditText notaA2;
     private EditText notaA3;
-    private Button btnCalcular;
+    private Button btnSave;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        nomeDisciplina = (EditText) findViewById(R.id.nomeDisciplina);
         notaA1 = (EditText) findViewById(R.id.notaA1);
         notaA1.setFilters(new InputFilter[]{new MinMaxFilter(0.0, 10.0)});
         notaA2 = (EditText) findViewById(R.id.notaA2);
         notaA2.setFilters(new InputFilter[]{new MinMaxFilter(0.0, 10.0)});
         notaA3 = (EditText) findViewById(R.id.notaA3);
         notaA3.setFilters(new InputFilter[]{new MinMaxFilter(0.0, 10.0)});
-        btnCalcular = (Button) findViewById(R.id.btnCalc);
+        btnSave = (Button) findViewById(R.id.btnSave);
 
-        btnCalcular.setOnClickListener(new View.OnClickListener() {
+        btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                List<EditText> campos = new ArrayList<>(Arrays.asList(notaA1, notaA2, notaA3));
+                List<EditText> campos = new ArrayList<>(Arrays.asList(nomeDisciplina, notaA1, notaA2, notaA3));
                 AlertDialog alert;
-                if(campoVazio(campos)){
-                    alert = mensagem("Campos Vazios", "É necessário informar todas as notas", null);
+                Map<String, Boolean> checkCampos = campoVazio(campos);
+                if(!checkCampos.isEmpty()){
+                    alert = mensagem("Campos Vazios", "É necessário informar: "
+                             + checkCampos.keySet().stream().findFirst().get(), null);
                     alert.show();
                 }else {
+                    String disciplinaNome = nomeDisciplina.getText().toString();
                     Double a1 = Double.valueOf(notaA1.getText().toString());
                     Double a2 = Double.valueOf(notaA2.getText().toString());
                     Double a3 = Double.valueOf(notaA3.getText().toString());
-                    String media = calculoMedia(a1, a2, a3);
-                    alert = mensagem("NFp", "Sua NFp é ", media);
-                    alert.show();
+                    Disciplina disciplina = new Disciplina(disciplinaNome, a1, a2, a3);
+                    Toast.makeText(MainActivity.this, disciplina.toString(), Toast.LENGTH_SHORT).show();
                     try {
                         InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
                         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
                     } catch (Exception e) {
                         // TODO: handle exception
                     }
-                    notaA1.setText("");
-                    notaA2.setText("");
-                    notaA3.setText("");
-                    notaA1.requestFocus();
+
                 }
             }
         });
 
     }
 
-    private boolean campoVazio(List<EditText> campos){
+    private Map<String, Boolean> campoVazio(List<EditText> campos){
+        Map<String, Boolean> validaCampos = new HashMap<>();
         for(EditText campo: campos){
             if(campo.getText().toString().matches("")){
-                return true;
+                validaCampos.put((String) campo.getHint(), true);
             }
         }
-        return false;
+        return validaCampos;
     }
 
     private AlertDialog mensagem(String title, String msg, String complementoMsg){

@@ -9,16 +9,14 @@ public class Disciplina implements Serializable {
     private double a1 = 0;
     private double a2 = 0;
     private double a3 = 0;
-    private boolean aprovado;
 
     public Disciplina(){
     }
-    public Disciplina(String nomeDiciplina, double a1, double a2, double a3, boolean aprovado) {
+    public Disciplina(String nomeDiciplina, double a1, double a2, double a3) {
         this.nomeDiciplina = nomeDiciplina;
         this.a1 = a1;
         this.a2 = a2;
         this.a3 = a3;
-        this.aprovado = aprovado;
     }
 
     public long getId() {
@@ -61,27 +59,12 @@ public class Disciplina implements Serializable {
         this.a3 = a3;
     }
 
-    public boolean getAprovado() {
-        return aprovado;
-    }
-
-    public void setAprovado(boolean aprovado) {
-        this.aprovado = aprovado;
-    }
-
     @Override
     public String toString() {
         return "Diciplina='" + nomeDiciplina + '\'' +
                 ", A1=" + a1 +
                 ", A2=" + a2 +
-                ", A3=" + a3 +
-                isAprovado();
+                ", A3=" + a3 ;
     }
 
-    private String isAprovado(){
-        if(this.aprovado){
-            return "Aprovado";
-        }
-        return "Reprovado";
-    }
 }

@@ -11,12 +11,12 @@
         android:id="@+id/imageView2"
         android:layout_width="154dp"
         android:layout_height="130dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.084"
         app:srcCompat="@drawable/uva2" />
 
     <TextView
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
         android:gravity="center"
-        android:text="Calculadora NFp"
+        android:text="Notas da Disciplina"
         android:textAlignment="center"
         android:textColor="#004B7A"
         android:textSize="35sp"
@@ -35,6 +35,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.286" />
 
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="231dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#004B7A"
+        android:text="Salvar"
+        android:textColor="#FBCC00"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.84" />
+
     <EditText
         android:id="@+id/notaA1"
         android:layout_width="325dp"
@@ -42,16 +56,16 @@
         android:backgroundTint="#5A5A5A"
         android:ems="10"
         android:hint="Nota A1"
-        android:textColorHint="#9C8181"
         android:inputType="numberDecimal"
         android:textColor="#000"
+        android:textColorHint="#9C8181"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.662"
+        app:layout_constraintHorizontal_bias="0.546"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.396" />
+        app:layout_constraintVertical_bias="0.564" />
 
     <EditText
         android:id="@+id/notaA2"
@@ -61,16 +75,16 @@
         android:backgroundTint="#5A5A5A"
         android:ems="10"
         android:hint="Nota A2"
-        android:textColorHint="#9C8181"
         android:inputType="numberDecimal"
         android:textColor="#000"
+        android:textColorHint="#9C8181"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.662"
+        app:layout_constraintHorizontal_bias="0.546"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.419" />
+        app:layout_constraintVertical_bias="0.604" />
 
     <EditText
         android:id="@+id/notaA3"
@@ -86,22 +100,27 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.662"
+        app:layout_constraintHorizontal_bias="0.546"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.503" />
+        app:layout_constraintVertical_bias="0.688" />
 
-    <Button
-        android:id="@+id/btnCalc"
-        android:layout_width="231dp"
-        android:layout_height="48dp"
-        android:backgroundTint="#004B7A"
-        android:text="Calcular"
-        android:textColor="#FBCC00"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <EditText
+        android:id="@+id/nomeDisciplina"
+        android:layout_width="325dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:inputType="text"
+        android:textColor="#000"
+        android:textColorHint="#9C8181"
+        android:textSize="20sp"
+        android:hint="Disciplina"
+        app:layout_constraintBottom_toTopOf="@+id/notaA1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.546"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.672" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.688" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
