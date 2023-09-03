@@ -4,26 +4,28 @@ import java.io.Serializable;
 
 public class Disciplina implements Serializable {
 
-    private long id;
+    private int id;
     private String nomeDiciplina;
-    private double a1 = 0;
-    private double a2 = 0;
-    private double a3 = 0;
+    private double a1 = 0.0;
+    private double a2 = 0.0;
+    private double a3 = 0.0;
+    private double nfp = 0.0;
 
     public Disciplina(){
     }
-    public Disciplina(String nomeDiciplina, double a1, double a2, double a3) {
+    public Disciplina(String nomeDiciplina, double a1, double a2, double a3, double nfp) {
         this.nomeDiciplina = nomeDiciplina;
         this.a1 = a1;
         this.a2 = a2;
         this.a3 = a3;
+        this.nfp = nfp;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -59,12 +61,20 @@ public class Disciplina implements Serializable {
         this.a3 = a3;
     }
 
+    public double getNfp() {
+        return nfp;
+    }
+    public void setNfp(double nfp) {
+        this.nfp = nfp;
+    }
+
     @Override
     public String toString() {
-        return "Diciplina='" + nomeDiciplina + '\'' +
+        return "Diciplina=" + nomeDiciplina +
                 ", A1=" + a1 +
                 ", A2=" + a2 +
-                ", A3=" + a3 ;
+                ", A3=" + a3 +
+                ", NFp= " + nfp;
     }
 
 }

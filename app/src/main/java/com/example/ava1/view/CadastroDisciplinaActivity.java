@@ -1,4 +1,4 @@
-package com.example.ava1;
+package com.example.ava1.view;
 
 
 import androidx.appcompat.app.AlertDialog;
@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.ava1.controller.DisciplinaDAO;
+import com.example.ava1.utils.MinMaxFilter;
+import com.example.ava1.R;
 import com.example.ava1.modelo.Disciplina;
 
 import java.text.DecimalFormat;
@@ -20,7 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class CadastroDisciplinaActivity extends AppCompatActivity {
 
     private EditText nomeDisciplina;
     private EditText notaA1;
@@ -31,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_cadastro_disciplina);
 
         nomeDisciplina = (EditText) findViewById(R.id.nomeDisciplina);
         notaA1 = (EditText) findViewById(R.id.notaA1);
@@ -41,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         notaA3 = (EditText) findViewById(R.id.notaA3);
         notaA3.setFilters(new InputFilter[]{new MinMaxFilter(0.0, 10.0)});
         btnSave = (Button) findViewById(R.id.btnSave);
+        DisciplinaDAO dao = new DisciplinaDAO(this);
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 AlertDialog alert;
                 Map<String, Boolean> checkCampos = campoVazio(campos);
                 if(!checkCampos.isEmpty()){
+                    //Organizar listas de campos
                     alert = mensagem("Campos Vazios", "É necessário informar: "
                              + checkCampos.keySet().stream().findFirst().get(), null);
                     alert.show();
@@ -57,8 +62,11 @@ public class MainActivity extends AppCompatActivity {
                     Double a1 = Double.valueOf(notaA1.getText().toString());
                     Double a2 = Double.valueOf(notaA2.getText().toString());
                     Double a3 = Double.valueOf(notaA3.getText().toString());
-                    Disciplina disciplina = new Disciplina(disciplinaNome, a1, a2, a3);
-                    Toast.makeText(MainActivity.this, disciplina.toString(), Toast.LENGTH_SHORT).show();
+                    Double nfp = calculoMedia(a1, a2, a3);
+                    Disciplina disciplina = new Disciplina(disciplinaNome, a1, a2, a3, nfp);
+                    long id = dao.inserirDisciplina(disciplina);
+                    Toast.makeText(CadastroDisciplinaActivity.this, "Disciplina cadastrada: " + id, Toast.LENGTH_SHORT).show();
+
                     try {
                         InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
                         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
@@ -83,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private AlertDialog mensagem(String title, String msg, String complementoMsg){
-        AlertDialog.Builder mensagem = new AlertDialog.Builder(MainActivity.this);
+        AlertDialog.Builder mensagem = new AlertDialog.Builder(CadastroDisciplinaActivity.this);
         mensagem.setTitle(title);
         if(complementoMsg != null){
             mensagem.setMessage(msg + complementoMsg);
@@ -94,12 +102,12 @@ public class MainActivity extends AppCompatActivity {
         return mensagem.create();
     }
 
-    private String arredondarResultado(double resultado){
+    private Double arredondarResultado(double resultado){
         DecimalFormat df = new DecimalFormat("#.##");
-        return df.format(resultado);
+        return Double.valueOf(df.format(resultado));
     }
 
-    private String calculoMedia(Double a1, Double a2, Double a3){
+    private Double calculoMedia(Double a1, Double a2, Double a3){
         Double nota1 = a1;
         Double nota2 = a2;
         if(a2 < a3){
