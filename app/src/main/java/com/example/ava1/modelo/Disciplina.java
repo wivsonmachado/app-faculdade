@@ -1,5 +1,7 @@
 package com.example.ava1.modelo;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.io.Serializable;
 
 public class Disciplina implements Serializable {
@@ -20,6 +22,7 @@ public class Disciplina implements Serializable {
         this.a3 = a3;
         this.nfp = nfp;
     }
+
 
     public int getId() {
         return id;
