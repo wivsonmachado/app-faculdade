@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="8sp"
+    android:layout_marginTop="3sp"
     android:background="#FDCE00"
     tools:layout_editor_absoluteY="20dp">
 
@@ -13,7 +13,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
         android:orientation="horizontal"
@@ -26,62 +25,53 @@
 
         <TextView
             android:id="@+id/nomeDisciplinaView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="70"
+            android:layout_weight="3"
             android:text="TextView"
             android:textColor="#004B7A" />
 
         <TextView
             android:id="@+id/a1View"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:text="TextView"
+            android:textAlignment="center"
             android:textColor="#004B7A" />
 
         <TextView
             android:id="@+id/a2View"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:text="TextView"
+            android:textAlignment="center"
             android:textColor="#004B7A" />
 
         <TextView
             android:id="@+id/a3View"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:text="TextView"
+            android:textAlignment="center"
             android:textColor="#004B7A" />
 
         <TextView
             android:id="@+id/nfpView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:text="TextView"
+            android:textAlignment="center"
             android:textColor="#004B7A" />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="15"
-            app:srcCompat="@android:drawable/ic_menu_edit" />
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="15"
-            app:srcCompat="@android:drawable/ic_menu_delete" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

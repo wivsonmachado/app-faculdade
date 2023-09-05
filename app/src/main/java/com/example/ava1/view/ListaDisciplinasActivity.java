@@ -40,10 +40,8 @@ public class ListaDisciplinasActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         DisciplinaAdapter adapter = new DisciplinaAdapter(disciplinas);
         recyclerView.setAdapter(adapter);
-
-
-
-
-
     }
+
+
+
 }
