@@ -45,6 +45,9 @@ public class DisciplinaAdapter extends RecyclerView.Adapter <DisciplinaAdapter.M
 
     @Override
     public int getItemCount() {
+        if(disciplinas == null || disciplinas.isEmpty()){
+            return 0;
+        }
         return disciplinas.size();
     }
 

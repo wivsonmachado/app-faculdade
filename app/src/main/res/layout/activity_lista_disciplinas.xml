@@ -41,6 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#E91E63"
+        android:onClick="adicionarDiciplina"
         android:text="Adicionar"
         app:icon="@android:drawable/ic_input_add"
         app:layout_constraintEnd_toEndOf="parent"
@@ -103,10 +104,19 @@
         <TextView
             android:id="@+id/nfpText"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:text="NFp"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Ações"
             android:textAlignment="center"
             android:textColor="#FFFFFF" />
 

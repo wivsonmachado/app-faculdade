@@ -3,6 +3,8 @@ package com.example.ava1.view;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.view.View;
@@ -75,9 +77,15 @@ public class CadastroDisciplinaActivity extends AppCompatActivity {
                     }
 
                 }
+                listaDisciplinas(view);
             }
         });
 
+    }
+
+    private void listaDisciplinas(View view){
+        Intent intent = new Intent(this, ListaDisciplinasActivity.class);
+        startActivity(intent);
     }
 
     private Map<String, Boolean> campoVazio(List<EditText> campos){
