@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class CadastroDisciplinaActivity extends AppCompatActivity {
@@ -38,6 +39,9 @@ public class CadastroDisciplinaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_disciplina);
+
+        Locale locale = new Locale("en", "US");
+        Locale.setDefault(locale);
 
         nomeDisciplina = (EditText) findViewById(R.id.nomeDisciplina);
         notaA1 = (EditText) findViewById(R.id.notaA1);
