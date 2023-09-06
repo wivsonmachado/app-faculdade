@@ -29,9 +29,9 @@ public class ListaDisciplinasActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private DisciplinaDAO dao;
-    private List<DisciplinaDTO> disciplinas;
+    private List<Disciplina> disciplinas;
     private List<Disciplina> disciplinasFiltradas = new ArrayList<>();
-    DisciplinaAdapter adapter = new DisciplinaAdapter(disciplinas);
+    private DisciplinaAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class ListaDisciplinasActivity extends AppCompatActivity {
 
         dao = new DisciplinaDAO(this);
         disciplinas = dao.getAllDisciplinas();
-
+        adapter = new DisciplinaAdapter(disciplinas, dao);
         recyclerView = findViewById(R.id.listaDisciplinas);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -57,9 +57,7 @@ public class ListaDisciplinasActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        disciplinas = dao.getAllDisciplinas();
-        adapter = new DisciplinaAdapter(disciplinas);
-        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
 

@@ -7,13 +7,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ava1.R;
+import com.example.ava1.controller.DisciplinaDAO;
 import com.example.ava1.dto.DisciplinaDTO;
+import com.example.ava1.modelo.Disciplina;
+import com.example.ava1.view.ListaDisciplinasActivity;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
@@ -21,10 +25,13 @@ import java.util.List;
 
 public class DisciplinaAdapter extends RecyclerView.Adapter <DisciplinaAdapter.MeuViewHolder>{
 
-    private List<DisciplinaDTO> disciplinas = new ArrayList<>();
+    private List<Disciplina> disciplinas = new ArrayList<>();
 
-    public DisciplinaAdapter(List<DisciplinaDTO> disciplinaList){
+    private DisciplinaDAO dao;
+
+    public DisciplinaAdapter(List<Disciplina> disciplinaList, DisciplinaDAO dao){
         this.disciplinas = disciplinaList;
+        this.dao = dao;
     }
 
     @NonNull
@@ -38,13 +45,13 @@ public class DisciplinaAdapter extends RecyclerView.Adapter <DisciplinaAdapter.M
     @Override
     public void onBindViewHolder(@NonNull MeuViewHolder holder, int position) {
 
-        DisciplinaDTO disciplina = disciplinas.get(position);
+        Disciplina disciplina = disciplinas.get(position);
 
         holder.disciplina.setText(disciplina.getNomeDiciplina());
-        holder.a1.setText(disciplina.getA1());
-        holder.a2.setText(disciplina.getA2());
-        holder.a3.setText(disciplina.getA3());
-        holder.nfp.setText(disciplina.getNfp());
+        holder.a1.setText(String.valueOf(disciplina.getA1()));
+        holder.a2.setText(String.valueOf(disciplina.getA2()));
+        holder.a3.setText(String.valueOf(disciplina.getA3()));
+        holder.nfp.setText(String.valueOf(disciplina.getNfp()));
 
     }
 
@@ -87,7 +94,6 @@ public class DisciplinaAdapter extends RecyclerView.Adapter <DisciplinaAdapter.M
             popupMenu.inflate(R.menu.menu_contexto);
             popupMenu.setOnMenuItemClickListener(this);
             popupMenu.show();
-
         }
 
 
@@ -97,7 +103,10 @@ public class DisciplinaAdapter extends RecyclerView.Adapter <DisciplinaAdapter.M
                 Log.d("MyViewHolder", "OnMenuItemClick: menu_editar " + getAdapterPosition());
                 return true;
             } else if (item.getItemId() == R.id.menu_excluir) {
-                Log.d("MyViewHolder", "OnMenuItemClick: menu_excluir " + getAdapterPosition());
+                Disciplina disciplinaExcluir = disciplinas.get(getAdapterPosition());
+                dao.delete(disciplinaExcluir);
+                disciplinas.remove(getAdapterPosition());
+                notifyDataSetChanged();
                 return true;
             }else {
                 return false;

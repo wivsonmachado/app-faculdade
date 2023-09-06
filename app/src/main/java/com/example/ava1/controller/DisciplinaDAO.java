@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.hardware.biometrics.BiometricManager;
 
+import androidx.annotation.NonNull;
+
 import com.example.ava1.conexao.Conexao;
 import com.example.ava1.dto.DisciplinaDTO;
 import com.example.ava1.modelo.Disciplina;
@@ -29,22 +31,30 @@ public class DisciplinaDAO {
         values.put("a2", disciplina.getA2());
         values.put("a3", disciplina.getA3());
         values.put("npf", disciplina.getNfp());
-
-        return banco.insert("disciplina", null, values);
+        long id = banco.insert("disciplina", null, values);
+        banco.close();
+        return id;
     }
 
-    public List<DisciplinaDTO> getAllDisciplinas(){
-        List<DisciplinaDTO> disciplinas = new ArrayList<>();
-        Cursor cursor = banco.query("disciplina", new String[]{"disciplina", "a1", "a2", "a3", "npf"}, null, null, null, null, null);
+    public List<Disciplina> getAllDisciplinas(){
+        List<Disciplina> disciplinas = new ArrayList<>();
+        Cursor cursor = banco.query("disciplina", new String[]{"id", "disciplina", "a1", "a2", "a3", "npf"}, null, null, null, null, null);
         while (cursor.moveToNext()){
-            DisciplinaDTO disciplina = new DisciplinaDTO(cursor.getString(0)
-            ,String.valueOf(cursor.getDouble(1))
-            ,String.valueOf(cursor.getDouble(2))
-            ,String.valueOf(cursor.getDouble(3))
-            ,String.valueOf(cursor.getDouble(4)));
+            Disciplina disciplina = new Disciplina(cursor.getInt(0)
+                    ,cursor.getString(1)
+                    ,cursor.getDouble(2)
+                    ,cursor.getDouble(3)
+                    ,cursor.getDouble(4)
+                    ,cursor.getDouble(5));
             disciplinas.add(disciplina);
         }
+        cursor.close();
         return disciplinas;
+    }
+
+    public void delete(@NonNull Disciplina disciplina){
+        banco.delete("disciplina", "id = ?", new String[]{String.valueOf(disciplina.getId())});
+        banco.close();
     }
 
 }
