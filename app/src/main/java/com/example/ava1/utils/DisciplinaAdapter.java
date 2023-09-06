@@ -1,5 +1,6 @@
 package com.example.ava1.utils;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -17,6 +18,7 @@ import com.example.ava1.R;
 import com.example.ava1.controller.DisciplinaDAO;
 import com.example.ava1.dto.DisciplinaDTO;
 import com.example.ava1.modelo.Disciplina;
+import com.example.ava1.view.CadastroDisciplinaActivity;
 import com.example.ava1.view.ListaDisciplinasActivity;
 import com.google.android.material.button.MaterialButton;
 
@@ -100,6 +102,10 @@ public class DisciplinaAdapter extends RecyclerView.Adapter <DisciplinaAdapter.M
         @Override
         public boolean onMenuItemClick(MenuItem item) {
             if(item.getItemId() == R.id.menu_editar){
+                Disciplina disciplinaEditar = disciplinas.get(getAdapterPosition());
+                Intent intent = new Intent(this.itemView.getContext(), CadastroDisciplinaActivity.class);
+                intent.putExtra("disciplina", disciplinaEditar);
+                this.itemView.getContext().startActivity(intent);
                 Log.d("MyViewHolder", "OnMenuItemClick: menu_editar " + getAdapterPosition());
                 return true;
             } else if (item.getItemId() == R.id.menu_excluir) {

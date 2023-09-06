@@ -57,4 +57,15 @@ public class DisciplinaDAO {
         banco.close();
     }
 
+    public long atualizarDisciplina(Disciplina disciplina) {
+        ContentValues values = new ContentValues();
+        values.put("disciplina", disciplina.getNomeDiciplina());
+        values.put("a1", disciplina.getA1());
+        values.put("a2", disciplina.getA2());
+        values.put("a3", disciplina.getA3());
+        values.put("npf", disciplina.getNfp());
+        long id = banco.update("disciplina", values, "id = ?", new String[]{String.valueOf(disciplina.getId())});
+        banco.close();
+        return id;
+    }
 }
