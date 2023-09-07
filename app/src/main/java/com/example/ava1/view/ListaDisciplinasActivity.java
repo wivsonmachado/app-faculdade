@@ -52,12 +52,28 @@ public class ListaDisciplinasActivity extends AppCompatActivity {
     public void adicionarDiciplina(View view){
         Intent intent = new Intent(this, CadastroDisciplinaActivity.class);
         startActivity(intent);
+        //finish();
     }
 
     @Override
     public void onResume() {
         super.onResume();
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        finish();
+    }
+
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        //finish();
+        overridePendingTransition(0, 0);
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
     }
 
 

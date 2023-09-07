@@ -32,7 +32,6 @@ public class DisciplinaDAO {
         values.put("a3", disciplina.getA3());
         values.put("npf", disciplina.getNfp());
         long id = banco.insert("disciplina", null, values);
-        banco.close();
         return id;
     }
 
@@ -48,13 +47,11 @@ public class DisciplinaDAO {
                     ,cursor.getDouble(5));
             disciplinas.add(disciplina);
         }
-        cursor.close();
         return disciplinas;
     }
 
     public void delete(@NonNull Disciplina disciplina){
         banco.delete("disciplina", "id = ?", new String[]{String.valueOf(disciplina.getId())});
-        banco.close();
     }
 
     public long atualizarDisciplina(Disciplina disciplina) {
@@ -65,7 +62,6 @@ public class DisciplinaDAO {
         values.put("a3", disciplina.getA3());
         values.put("npf", disciplina.getNfp());
         long id = banco.update("disciplina", values, "id = ?", new String[]{String.valueOf(disciplina.getId())});
-        banco.close();
         return id;
     }
 }

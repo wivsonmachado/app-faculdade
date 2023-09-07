@@ -44,7 +44,9 @@
         android:backgroundTint="#E91E63"
         android:onClick="adicionarDiciplina"
         android:text="Adicionar"
+        android:textColor="#FFFFFF"
         app:icon="@android:drawable/ic_input_add"
+        app:iconTint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />

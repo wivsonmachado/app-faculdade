@@ -68,13 +68,14 @@ public class CadastroDisciplinaActivity extends AppCompatActivity {
                 List<EditText> campos = new ArrayList<>(Arrays.asList(nomeDisciplina, notaA1, notaA2, notaA3));
                 AlertDialog alert;
                 Map<String, Boolean> checkCampos = campoVazio(campos);
+                if(!checkCampos.isEmpty()){
+                    //Organizar listas de campos
+                    alert = mensagem("Campos Vazios", "É necessário informar: "
+                            + checkCampos.keySet().stream().findFirst().get(), null);
+                    alert.show();
+                    return;
+                }
                 if(disciplina == null){
-                    if(!checkCampos.isEmpty()){
-                        //Organizar listas de campos
-                        alert = mensagem("Campos Vazios", "É necessário informar: "
-                                + checkCampos.keySet().stream().findFirst().get(), null);
-                        alert.show();
-                    }else {
                         String disciplinaNome = nomeDisciplina.getText().toString();
                         Double a1 = Double.valueOf(notaA1.getText().toString());
                         Double a2 = Double.valueOf(notaA2.getText().toString());
@@ -90,14 +91,9 @@ public class CadastroDisciplinaActivity extends AppCompatActivity {
                         } catch (Exception e) {
                             // TODO: handle exception
                         }
-                    }
+                    listaDisciplinas(view);
+
                 }else{
-                    if(!checkCampos.isEmpty()){
-                        //Organizar listas de campos
-                        alert = mensagem("Campos Vazios", "É necessário informar: "
-                                + checkCampos.keySet().stream().findFirst().get(), null);
-                        alert.show();
-                    }else {
                         String disciplinaNome = nomeDisciplina.getText().toString();
                         Double a1 = Double.valueOf(notaA1.getText().toString());
                         Double a2 = Double.valueOf(notaA2.getText().toString());
@@ -117,9 +113,9 @@ public class CadastroDisciplinaActivity extends AppCompatActivity {
                         } catch (Exception e) {
                             // TODO: handle exception
                         }
-                    }
+                    listaDisciplinas(view);
+
                 }
-                listaDisciplinas(view);
             }
         });
 
@@ -128,13 +124,18 @@ public class CadastroDisciplinaActivity extends AppCompatActivity {
     private void listaDisciplinas(View view){
         Intent intent = new Intent(this, ListaDisciplinasActivity.class);
         startActivity(intent);
+        finish();
     }
 
     private Map<String, Boolean> campoVazio(List<EditText> campos){
         Map<String, Boolean> validaCampos = new HashMap<>();
         for(EditText campo: campos){
             if(campo.getText().toString().matches("")){
-                validaCampos.put((String) campo.getHint(), true);
+                if(!campo.getHint().toString().equals("Disciplina")){
+                    campo.setText("0");
+                }else{
+                    validaCampos.put((String) campo.getHint(), true);
+                }
             }
         }
         return validaCampos;
@@ -169,5 +170,22 @@ public class CadastroDisciplinaActivity extends AppCompatActivity {
         }
         return arredondarResultado(resultado);
     }
+
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
+    }
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        Intent it = new Intent(this, ListaDisciplinasActivity.class);
+        startActivity(it);
+    }
+
 }
 
