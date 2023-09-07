@@ -1,4 +1,4 @@
-package com.example.ava2.controller;
+package com.example.ava1.controller;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,8 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.NonNull;
 
-import com.example.ava2.conexao.Conexao;
-import com.example.ava2.modelo.Disciplina;
+import com.example.ava1.conexao.Conexao;
+import com.example.ava1.modelo.Disciplina;
 
 import java.util.ArrayList;
 import java.util.List;

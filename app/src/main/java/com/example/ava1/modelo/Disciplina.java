@@ -1,4 +1,4 @@
-package com.example.ava2.modelo;
+package com.example.ava1.modelo;
 
 import java.io.Serializable;
 

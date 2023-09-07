@@ -1,4 +1,4 @@
-package com.example.ava2.utils;
+package com.example.ava1.utils;
 
 import android.text.InputFilter;
 import android.text.Spanned;
