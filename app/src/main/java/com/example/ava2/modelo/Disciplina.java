@@ -1,6 +1,4 @@
-package com.example.ava1.modelo;
-
-import androidx.recyclerview.widget.RecyclerView;
+package com.example.ava2.modelo;
 
 import java.io.Serializable;
 

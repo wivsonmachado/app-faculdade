@@ -1,4 +1,4 @@
-package com.example.ava1.dto;
+package com.example.ava2.dto;
 
 public class DisciplinaDTO{
     private String nomeDiciplina;

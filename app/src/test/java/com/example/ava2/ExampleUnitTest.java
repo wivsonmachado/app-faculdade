@@ -1,4 +1,4 @@
-package com.example.ava1;
+package com.example.ava2;
 
 import org.junit.Test;
 

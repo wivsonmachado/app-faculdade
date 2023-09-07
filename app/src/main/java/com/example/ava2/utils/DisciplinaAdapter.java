@@ -1,4 +1,4 @@
-package com.example.ava1.utils;
+package com.example.ava2.utils;
 
 import android.content.Intent;
 import android.util.Log;
@@ -8,19 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ava1.R;
-import com.example.ava1.controller.DisciplinaDAO;
-import com.example.ava1.dto.DisciplinaDTO;
-import com.example.ava1.modelo.Disciplina;
-import com.example.ava1.view.CadastroDisciplinaActivity;
-import com.example.ava1.view.ListaDisciplinasActivity;
-import com.google.android.material.button.MaterialButton;
+import com.example.ava2.R;
+import com.example.ava2.controller.DisciplinaDAO;
+import com.example.ava2.modelo.Disciplina;
+import com.example.ava2.view.CadastroDisciplinaActivity;
 
 import java.util.ArrayList;
 import java.util.List;

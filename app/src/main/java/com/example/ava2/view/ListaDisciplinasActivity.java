@@ -1,26 +1,17 @@
-package com.example.ava1.view;
+package com.example.ava2.view;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.ContextMenu;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
-import com.example.ava1.R;
-import com.example.ava1.controller.DisciplinaDAO;
-import com.example.ava1.dto.DisciplinaDTO;
-import com.example.ava1.modelo.Disciplina;
-import com.example.ava1.utils.DisciplinaAdapter;
+import com.example.ava2.R;
+import com.example.ava2.controller.DisciplinaDAO;
+import com.example.ava2.modelo.Disciplina;
+import com.example.ava2.utils.DisciplinaAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.ava1.view;
+package com.example.ava2.view;
 
 
 import androidx.appcompat.app.AlertDialog;
@@ -13,10 +13,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.ava1.controller.DisciplinaDAO;
-import com.example.ava1.utils.MinMaxFilter;
-import com.example.ava1.R;
-import com.example.ava1.modelo.Disciplina;
+import com.example.ava2.controller.DisciplinaDAO;
+import com.example.ava2.utils.MinMaxFilter;
+import com.example.ava2.R;
+import com.example.ava2.modelo.Disciplina;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.example.ava1.conexao;
+package com.example.ava2.conexao;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
