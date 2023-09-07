@@ -12,44 +12,41 @@
         android:layout_width="409dp"
         android:layout_height="500dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:background="#004B7A"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="309dp"
-        android:layout_height="70dp"
-        android:gravity="center"
-        android:text="Disciplinas"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="#FBCC00"
-        android:textColorHint="#DCC70F"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/listaDisciplinas"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.223" />
+        app:srcCompat="@drawable/uva3" />
 
     <Button
         android:id="@+id/adicionar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:backgroundTint="#E91E63"
         android:onClick="adicionarDiciplina"
         android:text="Adicionar"
         android:textColor="#FFFFFF"
         app:icon="@android:drawable/ic_input_add"
         app:iconTint="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/header"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.5" />
 
     <LinearLayout
         android:id="@+id/header"
