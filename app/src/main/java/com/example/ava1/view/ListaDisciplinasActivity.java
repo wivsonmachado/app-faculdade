@@ -15,6 +15,7 @@ import com.example.ava1.controller.DisciplinaDAO;
 import com.example.ava1.modelo.Disciplina;
 import com.example.ava1.utils.DisciplinaAdapter;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +45,8 @@ public class ListaDisciplinasActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         double cr1 = calculaCr();
-        cr.setText(String.valueOf(cr1));
+        String crFormatado = arredondarResultado(cr1);
+        cr.setText(crFormatado);
     }
 
     public void adicionarDiciplina(View view){
@@ -62,6 +64,11 @@ public class ListaDisciplinasActivity extends AppCompatActivity {
         }
         cr = npfGeral / disciplinas.size();
         return cr;
+    }
+
+    private String arredondarResultado(double resultado){
+        DecimalFormat df = new DecimalFormat("#.##");
+        return df.format(resultado);
     }
 
 
