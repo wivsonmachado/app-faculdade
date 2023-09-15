@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.ava1.R;
 import com.example.ava1.controller.DisciplinaDAO;
@@ -23,12 +25,14 @@ public class ListaDisciplinasActivity extends AppCompatActivity {
     private List<Disciplina> disciplinas;
     private List<Disciplina> disciplinasFiltradas = new ArrayList<>();
     private DisciplinaAdapter adapter;
+    private TextView cr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_disciplinas);
 
+        cr = findViewById(R.id.idCr);
 
         dao = new DisciplinaDAO(this);
         disciplinas = dao.getAllDisciplinas();
@@ -38,6 +42,9 @@ public class ListaDisciplinasActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
+
+        double cr1 = calculaCr();
+        cr.setText(String.valueOf(cr1));
     }
 
     public void adicionarDiciplina(View view){
@@ -45,6 +52,18 @@ public class ListaDisciplinasActivity extends AppCompatActivity {
         startActivity(intent);
         //finish();
     }
+
+    public Double calculaCr(){
+        Double npfGeral = 0.0;
+        Double cr = 0.0;
+        List<Disciplina> disciplinas = dao.getAllDisciplinas();
+        for(Disciplina disciplina: disciplinas){
+            npfGeral = npfGeral + disciplina.getNfp();
+        }
+        cr = npfGeral / disciplinas.size();
+        return cr;
+    }
+
 
     @Override
     public void onResume() {
