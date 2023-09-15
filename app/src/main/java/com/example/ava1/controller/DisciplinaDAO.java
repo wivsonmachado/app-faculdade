@@ -35,7 +35,7 @@ public class DisciplinaDAO {
 
     public List<Disciplina> getAllDisciplinas(){
         List<Disciplina> disciplinas = new ArrayList<>();
-        Cursor cursor = banco.query("disciplina", new String[]{"id", "disciplina", "a1", "a2", "a3", "npf"}, null, null, null, null, null);
+        Cursor cursor = banco.query("disciplina", new String[]{"id", "disciplina", "a1", "a2", "a3", "npf"}, null, null, null, null, "id desc");
         while (cursor.moveToNext()){
             Disciplina disciplina = new Disciplina(cursor.getInt(0)
                     ,cursor.getString(1)
